@@ -1,0 +1,12 @@
+name: cu_fixture
+version: "1.0.0"
+config-version: 2
+
+profile: cu_fixture
+model-paths:
+  - models
+
+models:
+  cu_fixture:
+    +materialized: table
+    +schema: cu_fixture

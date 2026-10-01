@@ -1,0 +1,30 @@
+version: 2
+
+sources:
+  - name: cu_fixture
+    description: Existing Postgres entities used to test CU catalog resolution.
+    database: learning_hive
+    schema: cu_fixture
+    tables:
+      - name: raw_orders
+        description: Small, deterministic input table created in the local development database.
+        columns:
+          - name: order_id
+            description: Stable order identifier.
+          - name: customer_name
+            description: Example customer name.
+          - name: amount
+            description: Order amount.
+          - name: order_date
+            description: Date assigned to the order.
+
+models:
+  - name: order_summary
+    description: Daily order counts and gross amounts derived from raw_orders.
+    columns:
+      - name: order_date
+        description: Summary date.
+      - name: order_count
+        description: Number of orders on the date.
+      - name: gross_amount
+        description: Total order amount on the date.
