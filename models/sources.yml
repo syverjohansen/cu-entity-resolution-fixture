@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: cu_fixture
-    description: Existing Postgres entities used to test CU catalog resolution.
+    description: Order records available to the reporting models.
     database: learning_hive
     schema: cu_fixture
     tables:

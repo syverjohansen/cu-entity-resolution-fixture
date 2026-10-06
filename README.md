@@ -1,22 +1,14 @@
-# CU entity-resolution fixture
+# Entity Resolution Fixture
 
-This public repository is a deliberately small dbt project for testing catalog-driven lineage resolution in Clear Fracture Code Understanding.
+This repository contains a compact dbt project for exploring how SQL model metadata can be compared with a data catalog.
 
-It describes one lineage edge:
+## Project files
 
-```text
-learning_hive.cu_fixture.raw_orders
-  -> learning_hive.cu_fixture.order_summary
-```
+- `models/sources.yml` contains the project source declaration and column descriptions.
+- `models/order_summary.sql` contains the model query.
+- `dbt_project.yml` configures the project and model defaults.
+- `profiles.yml` contains local connection settings that read credentials from environment variables.
 
-Both tables must already exist in OpenMetadata as ordinary Postgres entities before running Code Understanding in enforced catalog-resolution mode. Code Understanding should resolve the schema-qualified names against the supplied catalog snapshot; it must not create custom table entities.
+## Local inspection
 
-## Contents
-
-- `models/sources.yml` declares the existing Postgres source table.
-- `models/order_summary.sql` contains the transformation and lineage signal.
-- `profiles.yml` supplies non-secret database and schema hints to static analysis. Runtime credentials are environment-variable placeholders and are never committed.
-
-## Expected result
-
-A fresh CU lineage run should report a complete catalog snapshot and a validated edge from `raw_orders` to `order_summary`. If either table has not been ingested into OpenMetadata, enforced mode should report the edge as unresolved with `fqn_absent` and perform no lineage write.
+The project files can be reviewed without starting dbt or connecting to a database. To check the SQL and YAML with local tooling, use the parsers already installed in your environment. Runtime credentials are not included in this repository.
